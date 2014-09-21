@@ -6,6 +6,8 @@ hadiscover is listening on a specific directory in etcd, and for each changes it
 
 It have been created to be used in parallel of my [Dockreg](https://github.com/adetante/dockreg) tool which does Docker container registration in etcd (see [my blog post](adetante.github.io/articles/service-discovery-with-docker-2)).
 
+For more information and for build instruction, please read my post about [Service Discovery with HAproxy](http://adetante.github.io/articles/service-discovery-haproxy).
+
 ## Config file
 
 hadiscover uses a [go text template](http://golang.org/pkg/text/template) to generate the haproxy configuration. For example:
