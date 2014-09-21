@@ -4,6 +4,7 @@ import(
     "github.com/coreos/go-etcd/etcd"
     "strings"
     "fmt"
+    "log"
 )
 
 type Backend struct{
@@ -17,7 +18,7 @@ func GetBackends(client *etcd.Client, service, backendName string)([]Backend,err
 
     resp,err := client.Get(service,false,true)
     if (err != nil){
-        fmt.Println("err: %s",err)
+        log.Println("Error when reading etcd: ",err)
         return nil,err
     } else{
         backends := make([]Backend,len(resp.Node.Nodes))
