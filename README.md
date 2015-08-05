@@ -1,6 +1,6 @@
 # hadiscover
 
-This tool generates a [HAproxy](www.haproxy.org) configuration file based on [etcd](https://coreos.com/using-coreos/etcd/), and then reloads gracefully HAproxy. 
+This tool generates a [HAproxy](www.haproxy.org) configuration file based on [etcd](https://coreos.com/using-coreos/etcd/), and then reloads gracefully HAproxy.
 
 hadiscover is listening on a specific directory in etcd, and for each changes it  re-generates the configuration and reloads graceully the server (using the `-sf` HAproxy flag).
 
@@ -34,12 +34,12 @@ frontend http-in
 
 backend http
 {{range .}}     server {{.Name}} {{.Ip}}:{{.Port}} maxconn 32
-{{end}}%
+{{end}}
 ```
 
 The `backend http` part will be replaced by the list of available services retrieved in etcd.
 
-The key name in etcd must have be formatted with the form `host:port`, for example:  
+The key name in etcd must have be formatted with the form `host:port`, for example:
 `http://my-etcd-server:4001/keys/services/192.168.0.1:8000`
 
 
