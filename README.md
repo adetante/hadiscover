@@ -4,7 +4,7 @@ This tool generates a [HAproxy](www.haproxy.org) configuration file based on [et
 
 hadiscover is listening on a specific directory in etcd, and for each changes it  re-generates the configuration and reloads graceully the server (using the `-sf` HAproxy flag).
 
-It have been created to be used in parallel of my [Dockreg](https://github.com/adetante/dockreg) tool which does Docker container registration in etcd (see [my blog post](adetante.github.io/articles/service-discovery-with-docker-2)).
+It have been created to be used in parallel of my [Dockreg](https://github.com/adetante/dockreg) tool which does Docker container registration in etcd (see [my blog post](http://adetante.github.io/articles/service-discovery-with-docker-2)).
 
 For more information and for build instruction, please read my post about [Service Discovery with HAproxy](http://adetante.github.io/articles/service-discovery-haproxy).
 
@@ -46,12 +46,12 @@ The key name in etcd must have be formatted with the form `host:port`, for examp
 ## Command line usage
 
 ```
-haproxy --config templatePath --etcd etcdServersList --ha pathToHAcommand --key etcdKey
+hadiscover --config templatePath --etcd etcdServersList --ha pathToHAcommand --key etcdKey
 ```
 
 Where:
 
 * **templatePath** is the path to the configuration template
 * **etcdServersList** is the list of etcd servers, like `--etcd http://localhost:4001`
-* **ha** is the path to the HAproxy executable
-* **key** is the key to watch changes for
+* **pathToHAcommand** is the path to the HAproxy executable
+* **etcdKey** is the key to watch changes for
