@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/coreos/go-etcd/etcd"
+	"github.com/coreos/etcd/client"
 	"log"
 	"strings"
 )
@@ -15,7 +15,7 @@ type Backend struct {
 
 func GetBackends(client *etcd.Client, service, backendName string) ([]Backend, error) {
 
-	resp, err := client.Get(service, false, true)
+	resp, err := client.Get(contest.Background(), service, nil)
 	if err != nil {
 		log.Println("Error when reading etcd: ", err)
 		return nil, err
@@ -25,7 +25,8 @@ func GetBackends(client *etcd.Client, service, backendName string) ([]Backend, e
 
 			key := (*element).Key // key format is: /service/IP:PORT
 			service := strings.Split(key[strings.LastIndex(key, "/")+1:], ":")
-
+			log.Println("service:      ",service)
+			log.Println("key:          ",key)
 			backends[index] = Backend{Name: fmt.Sprintf("back-%v", index), Ip: service[0], Port: service[1]}
 		}
 		return backends, nil
